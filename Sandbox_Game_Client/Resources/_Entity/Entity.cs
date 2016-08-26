@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Sandbox_Game_Client.Resources._Entity
 {
-    public class Entity
+    public class Entity : Collidable
     {
-        public Vector2 Location;
+        //public Vector2 Location;
         public Vector2 Velocity;
         public World World { get; set; }
         public Direction2D Direction { get; set; }
@@ -34,7 +34,7 @@ namespace Sandbox_Game_Client.Resources._Entity
         }
         public bool Solid { get; set; }
 
-        public Entity(World World, Texture2D[] Textures, Vector2 Location)
+        public Entity(World World, Texture2D[] Textures, Vector2 Location) : base (Location, Textures[0].Width, Textures[0].Height)
         {
             this.World = World;
             this.Location = Location;
@@ -43,7 +43,7 @@ namespace Sandbox_Game_Client.Resources._Entity
 
             Solid = true;
         }
-        public Entity(World World, Texture2D Texture, Vector2 Location)
+        public Entity(World World, Texture2D Texture, Vector2 Location) : base(Location, Texture.Width, Texture.Height)
         {
             this.World = World;
             this.Location = Location;
@@ -52,30 +52,30 @@ namespace Sandbox_Game_Client.Resources._Entity
 
             Solid = true;
         }
-        public bool Collides(Entity e)
-        {
-            if (Location.X < e.Location.X + e.Textures[TextureIndex].Width &&
-                Location.X + Textures[TextureIndex].Width > e.Location.X &&
-                Location.Y < e.Location.Y + e.Textures[TextureIndex].Height &&
-                Textures[TextureIndex].Height + Location.Y > e.Location.Y)
-            {
-                return true;
-            }
+        //public bool Collides(Entity e)
+        //{
+        //    if (Location.X < e.Location.X + e.Textures[TextureIndex].Width &&
+        //        Location.X + Textures[TextureIndex].Width > e.Location.X &&
+        //        Location.Y < e.Location.Y + e.Textures[TextureIndex].Height &&
+        //        Textures[TextureIndex].Height + Location.Y > e.Location.Y)
+        //    {
+        //        return true;
+        //    }
 
-            return false;
-        }
-        public bool Collides(Entity e, Vector2 Position)
-        {
-            if (Position.X < e.Location.X + e.Textures[TextureIndex].Width &&
-                Position.X + Textures[TextureIndex].Width > e.Location.X &&
-                Position.Y < e.Location.Y + e.Textures[TextureIndex].Height &&
-                Textures[TextureIndex].Height + Position.Y > e.Location.Y)
-            {
-                return true;
-            }
+        //    return false;
+        //}
+        //public bool Collides(Entity e, Vector2 Position)
+        //{
+        //    if (Position.X < e.Location.X + e.Textures[TextureIndex].Width &&
+        //        Position.X + Textures[TextureIndex].Width > e.Location.X &&
+        //        Position.Y < e.Location.Y + e.Textures[TextureIndex].Height &&
+        //        Textures[TextureIndex].Height + Position.Y > e.Location.Y)
+        //    {
+        //        return true;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
         public Entity CheckEntityCollision()
         {
             foreach (Entity e in World.Entities)

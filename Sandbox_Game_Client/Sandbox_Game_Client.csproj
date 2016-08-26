@@ -55,6 +55,7 @@
     <Compile Include="Resources\FrameCounter.cs" />
     <Compile Include="Resources\Textures.cs" />
     <Compile Include="Resources\_Control\MouseController.cs" />
+    <Compile Include="Resources\_Entity\Collidable.cs" />
     <Compile Include="Resources\_Entity\Enemy.cs" />
     <Compile Include="Resources\_Entity\Entity.cs" />
     <Compile Include="Resources\_Entity\EntityType.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="Resources\_Menu\MenuButtonQuit.cs" />
     <Compile Include="Resources\_Menu\MenuPause.cs" />
     <Compile Include="Resources\_World\Direction2D.cs" />
+    <Compile Include="Resources\_World\Foreground.cs" />
+    <Compile Include="Resources\_World\ScrollingRectangle.cs" />
     <Compile Include="Resources\_World\World.cs" />
   </ItemGroup>
   <ItemGroup>
