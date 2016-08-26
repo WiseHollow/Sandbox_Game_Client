@@ -65,6 +65,8 @@
     <Compile Include="Resources\_Inventory\Inventory.cs" />
     <Compile Include="Resources\_Inventory\InventoryItem.cs" />
     <Compile Include="Resources\_Inventory\Item.cs" />
+    <Compile Include="Resources\_Menu\MenuButton.cs" />
+    <Compile Include="Resources\_Menu\MenuPause.cs" />
     <Compile Include="Resources\_World\Direction2D.cs" />
     <Compile Include="Resources\_World\World.cs" />
   </ItemGroup>
@@ -76,6 +78,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\_Textures\Pause.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\_Textures\_Button\Button_Continue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\_Textures\_Button\Button_Quit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\_Textures\_Clouds\Background_Clouds_01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

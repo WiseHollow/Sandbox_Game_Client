@@ -40,5 +40,17 @@ namespace Sandbox_Game_Client.Properties {
                 return ((bool)(this["DevelopmentVersion"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 480")]
+        public global::Microsoft.Xna.Framework.Vector2 Resolution {
+            get {
+                return ((global::Microsoft.Xna.Framework.Vector2)(this["Resolution"]));
+            }
+            set {
+                this["Resolution"] = value;
+            }
+        }
     }
 }

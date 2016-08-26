@@ -18,5 +18,10 @@ namespace Sandbox_Game_Client.Resources
         public static Texture2D[] CLOUDS;
 
         public static Texture2D MOUSE;
+        public static Texture2D PAUSE;
+
+        public static Texture2D BUTTON_CONTINUE;
+        public static Texture2D BUTTON_QUIT;
+
     }
 }

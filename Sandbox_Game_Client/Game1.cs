@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Sandbox_Game_Client.Content._Fonts;
 using Sandbox_Game_Client.Resources;
 using Sandbox_Game_Client.Resources._Entity;
+using Sandbox_Game_Client.Resources._Menu;
 using Sandbox_Game_Client.Resources._World;
 
 namespace Sandbox_Game_Client
@@ -35,6 +36,13 @@ namespace Sandbox_Game_Client
             //Console.WriteLine("Width: " + graphics.PreferredBackBufferWidth);
             //Console.WriteLine("Height: " + graphics.PreferredBackBufferHeight);
 
+            if ((int)Properties.Settings.Default.Resolution.X != graphics.PreferredBackBufferWidth || (int)Properties.Settings.Default.Resolution.Y != graphics.PreferredBackBufferHeight)
+            {
+                graphics.PreferredBackBufferWidth = (int)Properties.Settings.Default.Resolution.X;
+                graphics.PreferredBackBufferHeight = (int)Properties.Settings.Default.Resolution.Y;
+                graphics.ApplyChanges();
+            }
+
             base.Initialize();
         }
 
@@ -58,6 +66,10 @@ namespace Sandbox_Game_Client
             Textures.CLOUDS = new Texture2D[1] { Content.Load<Texture2D>("_Textures\\_Clouds\\Background_Clouds_01.png") };
 
             Textures.MOUSE = Content.Load<Texture2D>("_Textures\\_Mouse\\Mouse.png");
+            Textures.PAUSE = Content.Load<Texture2D>("_Textures\\Pause.png");
+
+            Textures.BUTTON_CONTINUE = Content.Load<Texture2D>("_Textures\\_Button\\Button_Continue.png");
+            Textures.BUTTON_QUIT = Content.Load<Texture2D>("_Textures\\_Button\\Button_Quit.png");
         }
 
         /// <summary>
@@ -76,11 +88,15 @@ namespace Sandbox_Game_Client
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
 
             // TODO: Add your update logic here
             World.Player.World.Update();
+            if (!World.Player.Active)
+            {
+                MenuPause.Update();
+            }
 
             base.Update(gameTime);
         }
@@ -96,6 +112,8 @@ namespace Sandbox_Game_Client
             // TODO: Add your drawing code here
 
             World.Player.World.Draw(spriteBatch);
+            MenuPause.Draw(spriteBatch);
+            
 
             spriteBatch.Begin();
             if (Properties.Settings.Default.Debug)
@@ -106,6 +124,7 @@ namespace Sandbox_Game_Client
             {
                 spriteBatch.DrawString(Font.Regular, "Development Version", new Vector2(graphics.PreferredBackBufferWidth - 125, graphics.PreferredBackBufferHeight - 15), Color.Black);
             }
+
             spriteBatch.End();
 
             base.Draw(gameTime);

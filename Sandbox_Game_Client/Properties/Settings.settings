@@ -8,5 +8,8 @@
     <Setting Name="DevelopmentVersion" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="Resolution" Type="Microsoft.Xna.Framework.Vector2" Scope="User">
+      <Value Profile="(Default)">800, 480</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
