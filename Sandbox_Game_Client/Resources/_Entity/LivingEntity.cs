@@ -56,20 +56,23 @@ namespace Sandbox_Game_Client.Resources._Entity
             }
         }
         public bool UseGravity { get; set; }
-        public LivingEntity(World World, Texture2D[] Textures, Vector2 Location, int Health) : base(World, Textures, Location)
+        public int MovementSpeed { get; set; }
+        public LivingEntity(World World, Texture2D[] Textures, Vector2 Location, int Health, int MovementSpeed) : base(World, Textures, Location)
         {
             this.World = World;
             this.MaxHealth = Health;
             this.Health = Health;
+            this.MovementSpeed = MovementSpeed;
 
             this.UseGravity = true;
             this.Alive = true;
         }
-        public LivingEntity(World World, Texture2D Texture, Vector2 Location) : base(World, new Texture2D[1] { Texture }, Location)
+        public LivingEntity(World World, Texture2D Texture, Vector2 Location, int MovementSpeed) : base(World, new Texture2D[1] { Texture }, Location)
         {
             this.World = World;
             this.MaxHealth = Health;
             this.Health = Health;
+            this.MovementSpeed = MovementSpeed;
 
             this.UseGravity = true;
             this.Alive = true;

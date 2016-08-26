@@ -8,11 +8,11 @@ namespace Sandbox_Game_Client.Resources._Entity
     public class Enemy : LivingEntity
     {
         public string Name { get; set; }
-        public Enemy(World World, Texture2D[] Textures, Vector2 Location, int Health, string Name) : base(World, Textures, Location, Health)
+        public Enemy(World World, Texture2D[] Textures, Vector2 Location, int Health, int MovementSpeed, string Name) : base(World, Textures, Location, Health, MovementSpeed)
         {
             this.Name = Name;
         }
-        public Enemy(World World, Texture2D Texture, Vector2 Location, int Health, string Name) : base(World, new Texture2D[1] { Texture }, Location, Health)
+        public Enemy(World World, Texture2D Texture, Vector2 Location, int Health, int MovementSpeed, string Name) : base(World, new Texture2D[1] { Texture }, Location, Health, MovementSpeed)
         {
             this.Name = Name;
         }

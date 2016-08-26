@@ -17,7 +17,7 @@ namespace Sandbox_Game_Client.Resources._World
                     World w = new World("Overworld");
                     w.Initialize();
                     
-                    player = new Player(w, Textures.PLAYER, new Vector2(1, 200), 100, "WiseHollow"); // TODO: Give default name
+                    player = new Player(w, Textures.PLAYER, new Vector2(1, 200), 100, 3, "WiseHollow"); // TODO: Give default name
 
                     w.LivingEntities.Add(player);
                 }

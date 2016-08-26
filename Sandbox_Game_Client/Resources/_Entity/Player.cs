@@ -19,14 +19,14 @@ namespace Sandbox_Game_Client.Resources._Entity
         KeyboardState OldKeyboardState;
         KeyboardState CurrentKeyboardState = Keyboard.GetState();
 
-        public Player(World World, Texture2D[] Textures, Vector2 Location, int Health, string Name) : base(World, Textures, Location, Health)
+        public Player(World World, Texture2D[] Textures, Vector2 Location, int Health, int MovementSpeed, string Name) : base(World, Textures, Location, Health, MovementSpeed)
         {
             this.Name = Name;
             this.World = World;
 
             this.Initialize();
         }
-        public Player(World World, Texture2D Texture, Vector2 Location, int Health, string Name) : base(World, new Texture2D[1] { Texture }, Location, Health)
+        public Player(World World, Texture2D Texture, Vector2 Location, int Health, int MovementSpeed, string Name) : base(World, new Texture2D[1] { Texture }, Location, Health, MovementSpeed)
         {
             this.Name = Name;
             this.World = World;
@@ -61,11 +61,11 @@ namespace Sandbox_Game_Client.Resources._Entity
                 }
                 if (GamePad.GetState(PlayerIndex.One).Buttons.RightStick == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.D))
                 {
-                    Velocity.X = 3;
+                    Velocity.X = MovementSpeed;
                 }
                 else if (GamePad.GetState(PlayerIndex.One).Buttons.LeftStick == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A))
                 {
-                    Velocity.X = -3;
+                    Velocity.X = -MovementSpeed;
                 }
             }
             
