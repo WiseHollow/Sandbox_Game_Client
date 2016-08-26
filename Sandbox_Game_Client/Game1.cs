@@ -14,6 +14,8 @@ namespace Sandbox_Game_Client
     /// </summary>
     public class Game1 : Game
     {
+        public static Game1 Instance { get; set; }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -21,6 +23,7 @@ namespace Sandbox_Game_Client
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            Instance = this;
         }
 
         /// <summary>
@@ -93,10 +96,6 @@ namespace Sandbox_Game_Client
 
             // TODO: Add your update logic here
             World.Player.World.Update();
-            if (!World.Player.Active)
-            {
-                MenuPause.Update();
-            }
 
             base.Update(gameTime);
         }
@@ -112,8 +111,6 @@ namespace Sandbox_Game_Client
             // TODO: Add your drawing code here
 
             World.Player.World.Draw(spriteBatch);
-            MenuPause.Draw(spriteBatch);
-            
 
             spriteBatch.Begin();
             if (Properties.Settings.Default.Debug)

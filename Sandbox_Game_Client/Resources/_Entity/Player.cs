@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sandbox_Game_Client.Resources._Control;
 using Sandbox_Game_Client.Resources._Inventory;
+using Sandbox_Game_Client.Resources._Menu;
 using Sandbox_Game_Client.Resources._World;
 
 namespace Sandbox_Game_Client.Resources._Entity
@@ -13,6 +14,7 @@ namespace Sandbox_Game_Client.Resources._Entity
         public string Name { get; set; }
         public Inventory Inventory { get; set; }
         public MouseController MouseController { get; set; }
+        public MenuPause MenuPause { get; set; }
 
         KeyboardState OldKeyboardState;
         KeyboardState CurrentKeyboardState = Keyboard.GetState();
@@ -22,20 +24,23 @@ namespace Sandbox_Game_Client.Resources._Entity
             this.Name = Name;
             this.World = World;
 
-            this.Inventory = new Inventory();
-            this.MouseController = new MouseController();
-
-            this.Active = true;
+            this.Initialize();
         }
         public Player(World World, Texture2D Texture, Vector2 Location, int Health, string Name) : base(World, new Texture2D[1] { Texture }, Location, Health)
         {
             this.Name = Name;
             this.World = World;
 
+            this.Initialize();
+        }
+        private void Initialize()
+        {
+            this.Active = true;
+
             this.Inventory = new Inventory();
             this.MouseController = new MouseController();
 
-            this.Active = true;
+            this.MenuPause = new MenuPause();
         }
         public override void Update()
         {
@@ -64,6 +69,10 @@ namespace Sandbox_Game_Client.Resources._Entity
                 }
             }
             
+            if (!Active)
+            {
+                MenuPause.Update();
+            }
 
             MouseController.Update();
             base.Update();
@@ -72,6 +81,11 @@ namespace Sandbox_Game_Client.Resources._Entity
         {
             if (Active)
                 MouseController.Draw(spriteBatch);
+            
+            if (!Active)
+            {
+                MenuPause.Draw(spriteBatch);
+            }
 
             base.Draw(spriteBatch);
         }

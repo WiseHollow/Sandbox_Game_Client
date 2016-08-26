@@ -66,6 +66,8 @@
     <Compile Include="Resources\_Inventory\InventoryItem.cs" />
     <Compile Include="Resources\_Inventory\Item.cs" />
     <Compile Include="Resources\_Menu\MenuButton.cs" />
+    <Compile Include="Resources\_Menu\MenuButtonContinue.cs" />
+    <Compile Include="Resources\_Menu\MenuButtonQuit.cs" />
     <Compile Include="Resources\_Menu\MenuPause.cs" />
     <Compile Include="Resources\_World\Direction2D.cs" />
     <Compile Include="Resources\_World\World.cs" />
