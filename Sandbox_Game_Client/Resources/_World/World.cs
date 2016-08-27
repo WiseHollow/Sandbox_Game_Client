@@ -17,7 +17,7 @@ namespace Sandbox_Game_Client.Resources._World
                     World w = new World("Overworld");
                     w.Initialize();
                     
-                    player = new Player(w, Textures.PLAYER, new Vector2(1, 0), 100, 3, "WiseHollow"); // TODO: Give default name
+                    player = new Player(w, Textures.PLAYER, new Vector2(100, 100), 100, 3, "WiseHollow"); // TODO: Give default name
 
                     w.LivingEntities.Add(player);
                 }
@@ -34,13 +34,11 @@ namespace Sandbox_Game_Client.Resources._World
         public List<LivingEntity> LivingEntities;
 
         public Vector2 CloudLocation = new Vector2(800, 0);
-        public Foreground Foreground { get; set; }
         public World(string Name)
         {
             this.Name = Name;
             Entities = new List<Entity>();
             LivingEntities = new List<LivingEntity>();
-            Foreground = new Foreground(null, 1, new Point[2] { new Point(0, 200), new Point(800, 200) });
         }
         public void Initialize()
         {

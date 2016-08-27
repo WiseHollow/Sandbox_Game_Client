@@ -84,11 +84,6 @@ namespace Sandbox_Game_Client.Resources._Entity
 
             return null;
         }
-        public bool CheckForegroundCollision()
-        {
-            if (World.Foreground.Collides(this)) { return true; }
-            return false;
-        }
         public void Remove()
         {
             World.Entities.Remove(this);
@@ -116,11 +111,6 @@ namespace Sandbox_Game_Client.Resources._Entity
             if (Velocity.Y != 0)
             {
                 Location.Y += Velocity.Y;
-                if (CheckForegroundCollision())
-                {
-                    Location.Y -= Velocity.Y;
-                    Velocity.Y = 0;
-                }
                 Entity e = CheckSolidCollision();
                 if (e != null)
                 {

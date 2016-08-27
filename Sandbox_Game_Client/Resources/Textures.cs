@@ -23,5 +23,6 @@ namespace Sandbox_Game_Client.Resources
         public static Texture2D BUTTON_CONTINUE;
         public static Texture2D BUTTON_QUIT;
 
+        public static Texture2D LINE_GREEN;
     }
 }

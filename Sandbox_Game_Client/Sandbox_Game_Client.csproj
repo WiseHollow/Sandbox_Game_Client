@@ -71,7 +71,6 @@
     <Compile Include="Resources\_Menu\MenuButtonQuit.cs" />
     <Compile Include="Resources\_Menu\MenuPause.cs" />
     <Compile Include="Resources\_World\Direction2D.cs" />
-    <Compile Include="Resources\_World\Foreground.cs" />
     <Compile Include="Resources\_World\ScrollingRectangle.cs" />
     <Compile Include="Resources\_World\World.cs" />
   </ItemGroup>

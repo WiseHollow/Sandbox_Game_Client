@@ -73,6 +73,9 @@ namespace Sandbox_Game_Client
 
             Textures.BUTTON_CONTINUE = Content.Load<Texture2D>("_Textures\\_Button\\Button_Continue.png");
             Textures.BUTTON_QUIT = Content.Load<Texture2D>("_Textures\\_Button\\Button_Quit.png");
+
+            Textures.LINE_GREEN = new Texture2D(GraphicsDevice, 1, 1);
+            Textures.LINE_GREEN.SetData<Color>( new Color[] { Color.LawnGreen });
         }
 
         /// <summary>
