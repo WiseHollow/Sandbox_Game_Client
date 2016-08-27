@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sandbox_Game_Client.Resources._World;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sandbox_Game_Client.Resources._Entity
 {
@@ -52,30 +47,6 @@ namespace Sandbox_Game_Client.Resources._Entity
 
             Solid = true;
         }
-        //public bool Collides(Entity e)
-        //{
-        //    if (Location.X < e.Location.X + e.Textures[TextureIndex].Width &&
-        //        Location.X + Textures[TextureIndex].Width > e.Location.X &&
-        //        Location.Y < e.Location.Y + e.Textures[TextureIndex].Height &&
-        //        Textures[TextureIndex].Height + Location.Y > e.Location.Y)
-        //    {
-        //        return true;
-        //    }
-
-        //    return false;
-        //}
-        //public bool Collides(Entity e, Vector2 Position)
-        //{
-        //    if (Position.X < e.Location.X + e.Textures[TextureIndex].Width &&
-        //        Position.X + Textures[TextureIndex].Width > e.Location.X &&
-        //        Position.Y < e.Location.Y + e.Textures[TextureIndex].Height &&
-        //        Textures[TextureIndex].Height + Position.Y > e.Location.Y)
-        //    {
-        //        return true;
-        //    }
-
-        //    return false;
-        //}
         public Entity CheckEntityCollision()
         {
             foreach (Entity e in World.Entities)
@@ -92,7 +63,6 @@ namespace Sandbox_Game_Client.Resources._Entity
                 if (!e.Solid) { continue; }
                 if (this.Collides(e)) { return e; }
             }
-
             return null;
         }
         public Entity CheckSolidCollision(Vector2 Position)
@@ -114,6 +84,11 @@ namespace Sandbox_Game_Client.Resources._Entity
 
             return null;
         }
+        public bool CheckForegroundCollision()
+        {
+            if (World.Foreground.Collides(this)) { return true; }
+            return false;
+        }
         public void Remove()
         {
             World.Entities.Remove(this);
@@ -125,25 +100,6 @@ namespace Sandbox_Game_Client.Resources._Entity
 
             if (Velocity.X != 0) // Move towards velocity.
             {
-                //if (Velocity.X <= 1 && Velocity.X >= -1) // If we have -1 or 1 pos to move
-                //{
-                //    Location.X += Velocity.X; // Let's move
-
-                //    if (CheckSolidCollision() != null) { Location.X -= Velocity.X; } // If we collide with solid object, move back to original position.
-
-                //    Velocity.X = 0; // Success, reset velocity to 0
-                //}
-                //else
-                //{
-                //    int offset = (int)(Velocity.X - (Math.Pow(Velocity.X, 0) * (Math.Abs(Velocity.X) - 1))); // Let's get which direction we are moving, -1 or 1
-
-                //    Location.X += offset; // Apply it to current position.
-
-                //    if (CheckSolidCollision() != null) { Location.X -= offset; } // Move back if we collide with solid object.
-
-                //    Velocity.X -= offset; // Subtract the offset from velocity.
-                //}
-
                 if (Velocity.X > 0) { Direction = Direction2D.RIGHT; }
                 else { Direction = Direction2D.LEFT; }
 
@@ -159,25 +115,12 @@ namespace Sandbox_Game_Client.Resources._Entity
             }
             if (Velocity.Y != 0)
             {
-                //if (Velocity.Y <= 1 && Velocity.Y >= -1)
-                //{
-                //    Location.Y += Velocity.Y;
-
-                //    if (CheckSolidCollision() != null) { Location.Y -= Velocity.Y; }
-
-                //    Velocity.Y = 0;
-                //}
-                //else
-                //{
-                //    int offset = (int)(Velocity.Y - (Math.Pow(Velocity.Y, 0) * (Math.Abs(Velocity.Y) -1)));
-
-                //    Location.Y += offset;
-
-                //    if (CheckSolidCollision() != null) { Location.Y -= offset; }
-
-                //    Velocity.Y -= offset;
-                //}
                 Location.Y += Velocity.Y;
+                if (CheckForegroundCollision())
+                {
+                    Location.Y -= Velocity.Y;
+                    Velocity.Y = 0;
+                }
                 Entity e = CheckSolidCollision();
                 if (e != null)
                 {
