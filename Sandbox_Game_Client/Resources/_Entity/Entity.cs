@@ -117,7 +117,7 @@ namespace Sandbox_Game_Client.Resources._Entity
                     if (Velocity.Y > 0)
                     {
                         int height = Textures[TextureIndex].Height;
-                        Location.Y = e.Location.Y - height;
+                        Location.Y = Location.Y - height;
                         e = null;
                     } else
                     {

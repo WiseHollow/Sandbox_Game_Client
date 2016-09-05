@@ -67,6 +67,12 @@ namespace Sandbox_Game_Client.Resources._Entity
                 {
                     Velocity.X = -MovementSpeed;
                 }
+
+                //
+                // Apply physics
+                //
+
+                
             }
             
             if (!Active)

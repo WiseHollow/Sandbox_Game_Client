@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LibNoise;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sandbox_Game_Client.Content._Fonts;
@@ -6,6 +7,7 @@ using Sandbox_Game_Client.Resources;
 using Sandbox_Game_Client.Resources._Entity;
 using Sandbox_Game_Client.Resources._Menu;
 using Sandbox_Game_Client.Resources._World;
+using System;
 
 namespace Sandbox_Game_Client
 {
@@ -36,9 +38,6 @@ namespace Sandbox_Game_Client
         {
             // TODO: Add your initialization logic here
 
-            //Console.WriteLine("Width: " + graphics.PreferredBackBufferWidth);
-            //Console.WriteLine("Height: " + graphics.PreferredBackBufferHeight);
-
             if ((int)Properties.Settings.Default.Resolution.X != graphics.PreferredBackBufferWidth || (int)Properties.Settings.Default.Resolution.Y != graphics.PreferredBackBufferHeight)
             {
                 graphics.PreferredBackBufferWidth = (int)Properties.Settings.Default.Resolution.X;
@@ -46,6 +45,11 @@ namespace Sandbox_Game_Client
                 graphics.ApplyChanges();
             }
 
+            // We turn on anti aliasing, because aliasing on lines (especially on thin lines) is very visible.
+            graphics.PreferMultiSampling = true;
+            graphics.ApplyChanges();
+
+            SpriteBatchEx.GraphicsDevice = GraphicsDevice;
             base.Initialize();
         }
 

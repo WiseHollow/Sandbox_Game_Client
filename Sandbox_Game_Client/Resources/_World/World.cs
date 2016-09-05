@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LibNoise;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sandbox_Game_Client.Resources._Entity;
+using Sandbox_Game_Client.Resources._Shape;
+using System;
 using System.Collections.Generic;
 
 namespace Sandbox_Game_Client.Resources._World
@@ -14,7 +17,7 @@ namespace Sandbox_Game_Client.Resources._World
             {
                 if (player == null)
                 {
-                    World w = new World("Overworld");
+                    World w = new World("Overworld", 201);
                     w.Initialize();
                     
                     player = new Player(w, Textures.PLAYER, new Vector2(100, 100), 100, 3, "WiseHollow"); // TODO: Give default name
@@ -30,49 +33,41 @@ namespace Sandbox_Game_Client.Resources._World
             }
         }
         public string Name { get; set; }
+        private int seed = 0;
+        public int Seed // Only can be changed from 0 once..
+        {
+            get
+            {
+                return seed;
+            }
+            set
+            {
+                if (seed == 0)
+                {
+                    seed = value;
+                }
+            }
+        }
+        public FastNoise FastNoise { get; set; }
         public List<Entity> Entities;
         public List<LivingEntity> LivingEntities;
-
         public Vector2 CloudLocation = new Vector2(800, 0);
-        public World(string Name)
+
+        private CRectangle rect;
+
+        public World(string Name, int Seed)
         {
             this.Name = Name;
+            this.Seed = Seed;
+            this.FastNoise = new FastNoise(Seed);
             Entities = new List<Entity>();
             LivingEntities = new List<LivingEntity>();
+            rect = new CRectangle(new Vector2(100, 200), 100, 200, Color.Green);
         }
         public void Initialize()
         {
-            int w = 800 / 16;
-            int h = 480 / 16;
-
-            for(int x = 0; x < w; x++)
-            {
-                for (int y = 23; y < h; y++)
-                {
-                    if (y == 23)
-                    {
-                        Entities.Add(new Entity(this, Textures.GRASS, new Vector2(x * 16, y * 16)));
-                    }
-                    else
-                    {
-                        Entities.Add(new Entity(this, Textures.DIRT, new Vector2(x * 16, y * 16)));
-                    }
-                }
-            }
-
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(200, 352)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(200, 336)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(200, 320)));
-
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(216, 352)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(216, 336)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(216, 320)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(216, 304)));
-
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(232, 352)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(232, 336)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(232, 320)));
-            Entities.Add(new Entity(this, Textures.STONE, new Vector2(232, 304)));
+            //rect.PointD = new Vector2(rect.PointD.X, rect.PointD.Y + 180);
+            rect.PointA = new Vector2(rect.PointA.X, rect.PointA.Y + 180);
         }
         public void SpawnEntity(EntityType type)
         {
@@ -109,7 +104,7 @@ namespace Sandbox_Game_Client.Resources._World
             spritebatch.Begin();
             spritebatch.Draw(Textures.CLOUDS[0], CloudLocation, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spritebatch.End();
-
+            rect.Draw(spritebatch);
             //
             // Draw all entities in memory
             //

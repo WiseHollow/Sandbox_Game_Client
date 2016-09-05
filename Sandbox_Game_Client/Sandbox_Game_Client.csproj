@@ -53,6 +53,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Resources\FrameCounter.cs" />
+    <Compile Include="Resources\SpriteBatchEx.cs" />
     <Compile Include="Resources\Textures.cs" />
     <Compile Include="Resources\_Control\MouseController.cs" />
     <Compile Include="Resources\_Entity\Collidable.cs" />
@@ -70,11 +71,16 @@
     <Compile Include="Resources\_Menu\MenuButtonContinue.cs" />
     <Compile Include="Resources\_Menu\MenuButtonQuit.cs" />
     <Compile Include="Resources\_Menu\MenuPause.cs" />
+    <Compile Include="Resources\_Shape\CRectangle.cs" />
     <Compile Include="Resources\_World\Direction2D.cs" />
     <Compile Include="Resources\_World\ScrollingRectangle.cs" />
     <Compile Include="Resources\_World\World.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="LibNoise, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Downloads\LibNoise\LibNoise\obj\Debug\LibNoise.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
